@@ -14,7 +14,7 @@ bot.command('start', async (ctx) => {
 bot.action('yes', async(ctx) =>{
     await ctx.answerCbQuery()
     await ctx.reply('намана', Markup.inlineKeyboard([
-        [Markup.button.webApp('Open CRM', 'https://crmbot.axcap.ae/')],
+        [Markup.button.webApp('Open CRM 🛑🛑🛑', 'https://crmbot.axcap.ae/')],
         [Markup.button.callback('Не открывать', 'noopen')]
     ]))
 })
