@@ -12,13 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="container mt-3">
-        <div className="row">
-          <div className="col-md-12">
-            <Base/>
-          </div>
-        </div>
-      </div>
+      <Base/>
     </div>
   );
 }

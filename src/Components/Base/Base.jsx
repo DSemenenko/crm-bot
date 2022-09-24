@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import CardInfo from "../Cards/CardInfo";
 import Form from "../Forms/Form";
 import PostService from "../API/PostService";
+import Navbar from "../Navbar/Navbar";
 
 const Base = () =>{
 
@@ -32,12 +33,22 @@ const Base = () =>{
     }, [])
 
     return(
-        <div>
-            {data.map(data =>
-                <CardInfo data={data} />
-                //<p>{data.TITLE}</p> 
-            )}
-            <Form/>
+        <div className="base-template">
+            <Navbar/>
+            <main>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            {data.map(data =>
+                                <CardInfo data={data} />
+                                
+                                //<p>{data.TITLE}</p> 
+                            )}
+                            <Form/>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     )
 }
