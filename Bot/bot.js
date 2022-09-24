@@ -2,7 +2,7 @@ const { Telegraf, Markup } = require('telegraf')
 
 const TOKEN = '5708943995:AAE9clSNeeOHVUNHE7gvimr98_uKu8RMLBQ';
 const bot = new Telegraf(TOKEN);
-
+const test = 2;
 //кнопки
 bot.command('start', async (ctx) => {
     ctx.reply('Это тест?', Markup.inlineKeyboard([
