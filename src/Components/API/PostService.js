@@ -1,5 +1,6 @@
 import axios from "axios";
 import Error from "../Error/Error";
+import React from "react";
 export default class PostService{
     static async getAll(){
         try{
@@ -22,7 +23,7 @@ export default class PostService{
             if (datalink == chatIdTelegram){   
                 return response.data 
             }else{
-                return <Error/>;
+                return (<Error/>);
             }
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 
