@@ -10,6 +10,8 @@ const Form = () => {
 
     //Post value 
     const [title, setTitle] = useState('');
+    const [comment, setComment] = useState('');
+    const [dateplan, setdateplan] = useState('');
     //const [select, setSelect] = useState('');
     
     const [statuslead, setstatuslead] = useState('ChangeLeadStatus');
@@ -46,9 +48,13 @@ const Form = () => {
     // Post method
     const postData = (e) => {
         e.preventDefault();
+        setComment('');
+        setdateplan('');
+        setTitle('');
         Axios.post('https://hook.integromat.com/5xa5g97w05id7jg7iyk61nrqvh9ahmwm', {
-            title,
-            statuslead
+            statuslead,
+            dateplan,
+            comment,
         }).then(res => console.log('Posting data', res)).catch(err => console.log(err ));
     }
 
@@ -97,6 +103,8 @@ const Form = () => {
                     <div className="mb-3 ">
                         <label className="form-label text-white">Date/Time</label>
                         <input 
+                            value={dateplan}
+                            onChange={(e) => setdateplan(e.target.value)}
                             type="datetime-local"
                             className="form-control"
                         />
@@ -110,7 +118,7 @@ const Form = () => {
                             type="text" value={title} 
                             onChange={(e) => setTitle(e.target.value)}
                         /> */}
-                        <textarea className="form-control" value={title}  onChange={(e) => setTitle(e.target.value)} placeholder="Leave a comment here" id="floatingTextarea"/>
+                        <textarea className="form-control" value={comment}  onChange={(e) => setComment(e.target.value)} placeholder="Leave a comment here" id="floatingTextarea"/>
                         <label for="floatingTextarea">Comments</label>
                     </div>
                     {/* <div className="form-floating">

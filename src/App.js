@@ -2,8 +2,8 @@ import React from "react";
 import './App.css';
 import Base from "./Components/Base/Base";
 
-// const tele = window.Telegram.WebApp;
-
+const tele = window.Telegram.WebApp;
+console.log('Tele.......', tele.initDataUnsafe.user.id)
 
 function App() {
 

@@ -2,7 +2,7 @@ const { Telegraf, Markup } = require('telegraf')
 
 const TOKEN = '5708943995:AAE9clSNeeOHVUNHE7gvimr98_uKu8RMLBQ';
 const bot = new Telegraf(TOKEN);
-const test = 2;
+
 //кнопки
 bot.command('start', async (ctx) => {
     ctx.reply('Это тест?', Markup.inlineKeyboard([
@@ -17,9 +17,9 @@ bot.command('check', async (ctx) => {
     //     [Markup.button.callback('Да', 'yes')],
     //     [Markup.button.callback('Нет', 'no')]
     // ]))
-    console.log(ctx.message.chat.id);
     const chatid = ctx.message.chat.id
-    ctx.reply('Your chat id: ', chatid)
+    ctx.reply([chatid])
+    console.log(ctx.message.chat.id);
 })
 
 // bot.command('', async(ctx) => {
@@ -34,7 +34,7 @@ bot.command('check', async (ctx) => {
 bot.action('yes', async(ctx) =>{
     await ctx.answerCbQuery()
     await ctx.reply('намана', Markup.inlineKeyboard([
-        [Markup.button.webApp('Open CRM 🛑🛑🛑', 'https://crmbot.axcap.ae/')],
+        [Markup.button.webApp('Open CRM 🛑🛑🛑', 'https://crmbot.axcap.ae/?id=721446')],
         [Markup.button.callback('Не открывать', 'noopen')]
     ]))
 })
