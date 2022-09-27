@@ -12,7 +12,7 @@ export default class PostService{
             const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;       
             const response = await axios.get(url);
 
-            const datalink = response.data.result.ASSIGNED_BY_ID;
+            const datalink = response.data.result.UF_CRM_1574625053;
             console.log('Наш айди', datalink)
 
             const tele = window.Telegram.WebApp;
