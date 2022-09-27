@@ -19,12 +19,11 @@ export default class PostService{
             const chatIdTelegram = tele.initDataUnsafe.user.id;
             console.log('Tele.......', chatIdTelegram);
             
-            if (datalink == chatIdTelegram){                
-                console.log('yes');
+            if (datalink == chatIdTelegram){   
+                return response.data 
             }else{
-                console.log('no');
+                return "нима";
             }
-            return response.data 
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 
         }
