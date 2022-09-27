@@ -17,13 +17,13 @@ export default class PostService{
 
             const tele = window.Telegram.WebApp;
             const chatIdTelegram = tele.initDataUnsafe.user.id;
-            console.log('Tele.......', chatIdTelegram)
+            console.log('Tele.......', chatIdTelegram);
             
-            // if (datalink == chatIdTelegram){                
-                
-            // }else{
-            //     return `<div>hi</div>`
-            // }
+            if (datalink == chatIdTelegram){                
+                console.log('yes');
+            }else{
+                console.log('no');
+            }
             return response.data 
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 
