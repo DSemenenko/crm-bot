@@ -15,6 +15,9 @@ export default class PostService{
             const datalink = response.data.result.ASSIGNED_BY_ID;
             console.log('Наш айди', datalink)
 
+            const tele = window.Telegram.WebApp;
+            console.log('Tele.......', tele.initDataUnsafe.user.id)
+
             return response.data 
             
         } catch (e){
