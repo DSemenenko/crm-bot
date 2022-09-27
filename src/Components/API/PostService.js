@@ -7,10 +7,14 @@ export default class PostService{
             const urlParams = new URLSearchParams(myKeyValues);    
             const param1 = urlParams.get('id');
             
+
             
             const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;       
             const response = await axios.get(url);
-            
+
+            const datalink = response.data.result.ASSIGNED_BY_ID;
+            console.log('Наш айди', datalink)
+
             return response.data 
             
         } catch (e){
