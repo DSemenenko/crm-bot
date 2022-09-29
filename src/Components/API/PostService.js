@@ -17,15 +17,15 @@ export default class PostService{
             console.log('Наш айди', datalink)
             
             const error = 'You cannot have access to this lead!';
-            // const tele = window.Telegram.WebApp;
-            // const chatIdTelegram = tele.initDataUnsafe.user.id;
-            // console.log('Tele.......', chatIdTelegram);
+            const tele = window.Telegram.WebApp;
+            const chatIdTelegram = tele.initDataUnsafe.user.id;
+            console.log('Tele.......', chatIdTelegram);
             
-            //if (datalink == chatIdTelegram){   
+            if (datalink == chatIdTelegram){   
                 return response.data 
-            // }else{
-            //     return `<p>Hello</p>`;
-            // }
+            }else{
+                return error;
+            }
 
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 
