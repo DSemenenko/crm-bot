@@ -3,6 +3,7 @@
 }
 main{
   padding: 10px 0;
+  padding-top: 80px;
 }
 .card{
   background: none;
@@ -41,4 +42,11 @@ main{
   to {
     transform: rotate(360deg);
   }
+}
+
+.hide{
+  display: none;
+}
+.show{
+  display: block;
 }

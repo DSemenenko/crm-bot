@@ -15,16 +15,18 @@ export default class PostService{
 
             const datalink = response.data.result.UF_CRM_1574625053;
             console.log('Наш айди', datalink)
-
-            const tele = window.Telegram.WebApp;
-            const chatIdTelegram = tele.initDataUnsafe.user.id;
-            console.log('Tele.......', chatIdTelegram);
             
-            if (datalink == chatIdTelegram){   
+            const error = 'You cannot have access to this lead!';
+            // const tele = window.Telegram.WebApp;
+            // const chatIdTelegram = tele.initDataUnsafe.user.id;
+            // console.log('Tele.......', chatIdTelegram);
+            
+            //if (datalink == chatIdTelegram){   
                 return response.data 
-            }else{
-                return (<Error/>);
-            }
+            // }else{
+            //     return `<p>Hello</p>`;
+            // }
+
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 
         }
