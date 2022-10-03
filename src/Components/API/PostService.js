@@ -10,22 +10,25 @@ export default class PostService{
             
 
             
-            const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;       
+            //const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
+            const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=87443";       
             const response = await axios.get(url);
-
+            
+            const nolead = "You don't have access to this lead anym"
+            
             const datalink = response.data.result.UF_CRM_1574625053;
             console.log('Наш айди', datalink)
             
             const error = 'You cannot have access to this lead!';
-            const tele = window.Telegram.WebApp;
-            const chatIdTelegram = tele.initDataUnsafe.user.id;
-            console.log('Tele.......', chatIdTelegram);
+            // const tele = window.Telegram.WebApp;
+            // const chatIdTelegram = tele.initDataUnsafe.user.id;
+            // console.log('Tele.......', chatIdTelegram);
             
-            if (datalink == chatIdTelegram){   
+            //if (datalink == chatIdTelegram){   
                 return response.data 
-            }else{
-                return error;
-            }
+            // }else{
+            //     return `<p>Hello</p>`;
+            // }
 
         } catch (e){
             console.log('Ошиииииииииииииибка', e); 

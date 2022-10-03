@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./Form.css";
 import Axios from 'axios';
 import {useForm} from 'react-hook-form';
+import param1 from "../API/PostService";
 
 // //Validation 
 // const Input= ({label, register, required}) => (
@@ -27,6 +28,7 @@ const Form = () => {
         reset 
       } = useForm();
     
+    // register = JSON.stringify([data])
 
     
 
@@ -64,22 +66,56 @@ const Form = () => {
     //     }).then(res => console.log('Posting data', res)).catch(err => console.log(err ));
     // }
 
-    const onSubmit = (data) => {
-        console.log(JSON.stringify(data));
-        Axios.post('https://hook.integromat.com/5xa5g97w05id7jg7iyk61nrqvh9ahmwm', {
-            data
-        }).then(res => console.log('Posting data', res)).catch(err => console.log(err ));
+   
+
+    const onSubmit = (fields) => {
+        console.log(JSON.stringify(fields));
+         console.log('массив', fields.COMMENT);
+        
+        // const arraytest = [];
+        // const test = arraytest.push('hhhhhhhhh', UF_CRM_1553506485)
+        // console.log(test)
+
+        // Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update', { 
+        //     "id": 87443,
+        //     fields, 
+        //     "params": {
+        //         "REGISTER_SONET_EVENT": "Y"
+        //     },
+            
+        // }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
+        // this.fields.concat('')
+        
+        
+        Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
+            "id": 87443,
+            fields,
+            "params": {
+                "REGISTER_SONET_EVENT": "Y"
+            }
+        }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
         reset()
+        
+        Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', { 
+            "fields":{
+                "ENTITY_ID": 87443,
+                "ENTITY_TYPE": "lead",
+                "COMMENT": fields.COMMENT
+            }
+        }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
+
       };
 
+
     const disablePastDate = () => {
-        const today = new Date();
-        const dd = String(today.getDate() + 1).padStart(2, "0");
-        const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-        const yyyy = today.getFullYear();
+        var today,dd,mm,yyyy;
+        today = new Date();
+        dd = String(today.getDate() + 1).padStart(2, "0");
+        mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        yyyy = today.getFullYear();
         return yyyy + "-" + mm + "-" + dd;
     };
-
+    
     return(
         <div className="card">
             <div className="card-body">
@@ -87,80 +123,75 @@ const Form = () => {
                 <form className="leadstatus" onSubmit={handleSubmit(onSubmit)}>
                     <div className="">
                         <select  
-                            className={`p-2 form-label form-control form-select ${errors.leadsatus && "is-invalid"}`} 
-                            {...register("leadsatus", { required: 'Gender is required' })} 
+                            className={`p-2 form-label form-control form-select ${errors.STATUS_ID && "is-invalid"}`} 
+                            {...register("STATUS_ID", { required: 'Gender is required' })} 
                         >
-                            <option value="">LEAD status</option>
-                            <option value="Contacted">Contacted</option>
-                            <option value="No Answer">No Answer</option>
+                            <option value="">--Change LEAD status--</option>
+                            <option value="IN_PROCESS">Contacted</option>
+                            <option value="4">No Answer</option>
                         </select>
-                        {errors.leadsatus && <span class="invalid-feedback">This field is required</span>}
+                        {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
                     </div>
 
                     <div className="form-floating">
                         <select 
                             className="form-label form-control form-select"
-                            {...register("language", {required: false})}
+                            {...register("UF_CRM_1553506485[0]", {required: false})}
                         >
-                            {/* <option >Open this select menu</option> */}
-                            <option selected value="English">English</option>
-                            <option value="Arabic">Arabic</option>
-                            <option value="Russian">Russian</option>
-                            <option value="Urdu">Urdu</option>
-                            <option value="German">German</option>
-                            <option value="French">French</option>
-                            <option value="Flemish">Flemish</option>
-                            <option value="Italian">Italian</option>
-                            <option value="Kazakh">Kazakh</option>
-                            <option value="Uzbek">Uzbek</option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="SA">SA</option>
-                            <option value="Romanian">Romanian</option>
-                            <option value="Portuguese">Portuguese</option>
-                            <option value="Polish">Polish</option>
-                            <option value="Farsi">Farsi</option>
-                            <option value="Chinese">Chinese</option>
-                            <option value="Albanian">Albanian</option>
-                            <option value="Hebrew">Hebrew</option>
+                            <option value="">--Add  language--</option>
+                            <option value="2925">English</option>
+                            <option value="2927">Arabic</option>
+                            <option value="2926">Russian</option>
+                            <option value="2928">Urdu</option>
+                            <option value="2931">German</option>
+                            <option value="2932">French</option>
+                            <option value="4227">Hindi</option>
+                            <option value="5085">Farsi</option>
+                            <option value="5943">Italian</option>
+                            <option value="11420">Portuguese</option>
+                            <option value="6834">Spanish</option>
+                            <option value="6943">Kazakh</option>
+                            <option value="6944">Uzbek</option>
+                            <option value="8142">Romanian</option>
+                            <option value="10523">Ukranian</option>
+                            <option value="10524">Belorusian</option>
+                            <option value="11382">Azerbaijan</option>
+                            <option value="11383">Chechen</option>
+                            <option value="12058">Dutch</option>
+                            <option value="12082">Hebrew</option>
+                            <option value="12407">Czech</option>
+                            <option value="16871">Chinese</option>
+                            <option value="16915">Polish</option>
                         </select>
                         <label for="floatingSelect">Update LEAD language</label>
                     </div>
 
                     <div className="mb-3 ">
                         <label className="form-label text-white">Date/Time</label>
-                        <input 
-                            //value={dateplan}
-                            //onChange={(e) => setdateplan(e.target.value)}
-                            type="date"
-                            className={`form-control ${errors.dateplan && "is-invalid"}`}
-                            {...register("dateplan", {required: 'Date is required'})}
+                        <input                  
+                            inputProps={{
+                                // only needs the first 16 characters in the date string
+                                min: new Date().toISOString().slice(0, 16),
+                              }}         
+                            type="datetime-local"
+                            className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
+                            {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
                             min={disablePastDate()}
                         />
-                        {errors.dateplan && <span className="invalid-feedback">The date should be choosed</span>}
+                        {errors.UF_CRM_1553688545479 && <span className="invalid-feedback">The date should be choosed</span>}
                         <div id="emailHelp" class="form-text">The lead will show in planner</div>
                     </div>
                     <div className="mb-3 ">
-                        {/* <label className="form-label">Comment</label>
-                        <input 
-                            placeholder="Leave a comment or instructions"
-                            className="form-control" 
-                            type="text" value={title} 
-                            onChange={(e) => setTitle(e.target.value)}
-                        /> */}
                         <label className="form-label text-white">Comments</label>
                         <textarea 
-                            className={`form-control ${errors.comment && "is-invalid"}`} 
-                            //value={comment}  
-                            //onChange={(e) => setComment(e.target.value)} 
+                            className={`form-control ${errors.COMMENT && "is-invalid"}`} 
                             placeholder="Leave a comment here" 
                             id="floatingTextarea"
-                            {...register("comment", {required: true})}
+                            {...register("COMMENT", {required: true})}
                         />
-                        {errors.comment && <span className="invalid-feedback">There should be a comment</span>}
-
-                        {/* <Input  label="Leave a comment here" register={register} required placeholder="Leave a comment here" />
-                        {errors.comment && <span  id="validationServer03Feedback" class="invalid-feedback">This field is required</span>} */}
+                        {errors.COMMENT && <span className="invalid-feedback">There should be a comment</span>}
                     </div>
+
                     {/* <div className="form-floating">
                         <select className="form-label form-control form-select" value={select} onChange={(e) => setSelect(e.target.value)}>
                             <option selected value="New">New</option>

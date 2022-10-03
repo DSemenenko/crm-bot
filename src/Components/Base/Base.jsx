@@ -3,13 +3,13 @@ import CardInfo from "../Cards/CardInfo";
 import Form from "../Forms/Form";
 import PostService from "../API/PostService";
 import Navbar from "../Navbar/Navbar";
+import nolead from "../API/PostService";
+
 
 const Base = () =>{
 
-
-
-
     const[data, setData] = useState([])
+    const[nolead, setNolead] = useState([])
      //Get data
     // useEffect(() => {
     //     Axios.get('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=703935')
@@ -25,8 +25,13 @@ const Base = () =>{
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
         //setData([response.data.result])  
+        console.log('посты', posts)
+        
         setData([posts.result]);
     }
+    const tele = window.Telegram.WebApp;
+    const chatIdTelegram = tele.initDataUnsafe.user.id;
+    console.log('Tele.......', chatIdTelegram);
 
     useEffect(() => {
         fetchPosts()
