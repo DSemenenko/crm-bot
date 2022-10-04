@@ -31,8 +31,7 @@ export default class PostService{
             
             
             
-            //if (datalink == chatIdTelegram){   
-            if (datalink == 5591115278){   
+            if (datalink == chatIdTelegram){   
                 return combination;
             }else{
                 return nolead;
