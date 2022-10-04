@@ -24,15 +24,15 @@ export default class PostService{
             const datalink = response.data.result.UF_CRM_1574625053;
             //console.log('Наш айди', datalink)
             
-            // const tele = window.Telegram.WebApp;
-            // const chatIdTelegram = tele.initDataUnsafe.user.id;
+            const tele = window.Telegram.WebApp;
+            const chatIdTelegram = tele.initDataUnsafe.user.id;
             // console.log('Tele.......', chatIdTelegram);
             
             
             
             
-            //if (datalink == chatIdTelegram){   
-            if (datalink == 5591115278){   
+            if (datalink == chatIdTelegram){   
+            //if (datalink == 5591115278){   
                 return combination;
             }else{
                 return nolead;
