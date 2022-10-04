@@ -11,6 +11,7 @@ const Base = () =>{
 
 
     const[data, setData] = useState([]);
+    const[restid, setRestid] = useState([]);
      //Get data
     // useEffect(() => {
     //     Axios.get('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=703935')
@@ -26,11 +27,10 @@ const Base = () =>{
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
         //setData([response.data.result])  
-        setData([posts.result]);
+        setData([posts.response.result]);
+        setRestid(posts.param1);
     }
-
-    console.log('data', data)
-    //console.log(data)
+    
 
     useEffect(() => {
         fetchPosts()
@@ -49,7 +49,7 @@ const Base = () =>{
                                     
                                     //<p>{data.TITLE}</p> 
                                 )}
-                                <Form/>
+                                <Form restid={restid}/>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,6 @@ const Base = () =>{
     } else {
         return(
             <div className="base-template"> 
-                <Navbar/>
                 <Error/>
             </div>
         )

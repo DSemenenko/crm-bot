@@ -16,7 +16,6 @@ const CardInfo = (props) => {
         }
     } 
 
-    console.log(props.data.STATUS_ID)
 
     let status = [];
     let elemstat;

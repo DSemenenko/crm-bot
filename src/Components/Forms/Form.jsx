@@ -4,6 +4,8 @@ import Axios from 'axios';
 import {useForm} from 'react-hook-form';
 import param1 from "../API/PostService";
 
+console.log('айди', param1);
+
 // //Validation 
 // const Input= ({label, register, required}) => (
 //     <>
@@ -17,8 +19,8 @@ import param1 from "../API/PostService";
 //     </>
 // );
 
-const Form = () => {
-
+const Form = (props) => {
+    console.log(props.restid)
     //Get value
     //const [data, setDate] = useState([])
     const {
@@ -88,7 +90,7 @@ const Form = () => {
         
         
         Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
-            "id": 87443,
+            "id": props.restid,
             fields,
             "params": {
                 "REGISTER_SONET_EVENT": "Y"
@@ -98,7 +100,7 @@ const Form = () => {
         
         Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', { 
             "fields":{
-                "ENTITY_ID": 87443,
+                "ENTITY_ID": props.restid,
                 "ENTITY_TYPE": "lead",
                 "COMMENT": fields.COMMENT
             }
