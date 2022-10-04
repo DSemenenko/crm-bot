@@ -3,7 +3,6 @@ import './CardInfo.css'
 
 const CardInfo = (props) => {
     
-    console.log('props', props.data)
 
     let email = [];
     let phone = [];
@@ -17,7 +16,14 @@ const CardInfo = (props) => {
         }
     } 
 
-    
+    console.log(props.data.STATUS_ID)
+
+    let status = [];
+    if (props.data.STATUS_ID !== "4") {
+        status = "NEW"
+    } else {
+        status = "No answer"
+    }
     
     
     return(
@@ -56,7 +62,7 @@ const CardInfo = (props) => {
                             <div 
                                 class="card-body p-2 text-center"
                             >
-                                {props.data.STATUS_ID}
+                                {status}
                             </div>
                         </div>
                     </div>
