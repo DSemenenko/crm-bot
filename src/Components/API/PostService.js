@@ -10,7 +10,7 @@ export default class PostService{
             
             
             
-            const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
+            const url = "https://crmdev.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
             //const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=87443";       
             const response = await axios.get(url);
             
@@ -31,8 +31,8 @@ export default class PostService{
             
             
             
-            if (datalink == chatIdTelegram){   
-            //if (datalink == 5591115278){   
+            //if (datalink == chatIdTelegram){   
+            if (datalink == 5591115278){   
                 return combination;
             }else{
                 return nolead;

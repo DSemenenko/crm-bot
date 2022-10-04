@@ -19,12 +19,15 @@ const CardInfo = (props) => {
 
     let status = [];
     let elemstat;
-    if (props.data.STATUS_ID !== "4") {
+    if (props.data.STATUS_ID == "NEW") {
         status = `NEW`
         elemstat = <div className="card-body p-2 text-center" style={{background: "#3ad0ff"}}>{status}</div>
+    } else if (props.data.STATUS_ID == "4") {
+        status = `No Answer`
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#fead99", color: "#000"}}>{status}</div>
     } else {
-        status = "No answer"
-        elemstat = <div className="card-body p-2 text-center" style={{background: "#fead99"}}>{status}</div>
+        status = "Contacted"
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#fff467", color: "#000"}}>{status}</div>
     }
     
     return(
