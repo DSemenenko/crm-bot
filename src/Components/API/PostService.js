@@ -24,7 +24,6 @@ export default class PostService{
             // console.log('Tele.......', chatIdTelegram);
             
             if (datalink == chatIdTelegram){   
-            if (datalink == 5591115278){   
                 return response.data 
             }else{
                 return nolead;
