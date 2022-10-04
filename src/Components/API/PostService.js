@@ -39,7 +39,7 @@ export default class PostService{
             }
 
         } catch (e){
-            console.log('Ошиииииииииииииибка', e); 
+            console.log('Ошииииииииииииибка', e); 
         }
 
         
