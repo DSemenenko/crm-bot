@@ -29,6 +29,8 @@ const Base = () =>{
         setData([posts.result]);
     }
 
+    console.log('data', data)
+    //console.log(data)
 
     useEffect(() => {
         fetchPosts()

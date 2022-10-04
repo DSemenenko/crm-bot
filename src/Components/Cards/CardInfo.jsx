@@ -19,12 +19,14 @@ const CardInfo = (props) => {
     console.log(props.data.STATUS_ID)
 
     let status = [];
+    let elemstat;
     if (props.data.STATUS_ID !== "4") {
-        status = "NEW"
+        status = `NEW`
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#3ad0ff"}}>{status}</div>
     } else {
         status = "No answer"
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#fead99"}}>{status}</div>
     }
-    
     
     return(
         <div>
@@ -58,12 +60,8 @@ const CardInfo = (props) => {
                     <a href="#" className="card-link">Another link</a> */}
                     <div className="mt-3">
                         <p className="card-title"><span className="text-warning">Status:</span></p>
-                        <div class="card border-0 mb-2" style={{background: "#3ad0ff"}}>
-                            <div 
-                                class="card-body p-2 text-center"
-                            >
-                                {status}
-                            </div>
+                        <div class="card border-0 mb-2">
+                            {elemstat}
                         </div>
                     </div>
                 </div>
