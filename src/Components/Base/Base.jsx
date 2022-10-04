@@ -62,6 +62,7 @@ const Base = () =>{
     } else {
         return(
             <div className="base-template"> 
+                <Navbar/>
                 <Error/>
             </div>
         )
