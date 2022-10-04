@@ -26,10 +26,13 @@ const Base = () =>{
         const posts = await PostService.getAll();
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
-        //setData([response.data.result])  
-        setData([posts.response.result]);
-        setRestid(posts.param1);
+        //setData([response.data.result]) 
+        if(posts !== undefined){
+            setData([posts.response.result]);
+            setRestid(posts.param1);
+        }
     }
+    
     
 
     useEffect(() => {

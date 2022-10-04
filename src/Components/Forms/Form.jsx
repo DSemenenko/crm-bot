@@ -88,7 +88,7 @@ const Form = (props) => {
         // this.fields.concat('')
         
         
-        Axios.post('https://crmdev.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
+        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
             "id": props.restid,
             fields,
             "params": {
@@ -97,7 +97,7 @@ const Form = (props) => {
         }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
         reset()
         
-        Axios.post('https://crmdev.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', { 
+        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', { 
             "fields":{
                 "ENTITY_ID": props.restid,
                 "ENTITY_TYPE": "lead",

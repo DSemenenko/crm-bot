@@ -9,18 +9,16 @@ export default class PostService{
             const param1 = urlParams.get('id');
             
             
-            
-            const url = "https://crmdev.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
+            const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
             //const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=87443";       
             const response = await axios.get(url);
             
-            const nolead = {};
-            
+            const nolead = undefined;
             const combination ={
                 "param1": param1, 
                 "response": response.data
             }
-
+            
             const datalink = response.data.result.UF_CRM_1574625053;
             //console.log('Наш айди', datalink)
             
