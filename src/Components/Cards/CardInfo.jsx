@@ -3,15 +3,21 @@ import './CardInfo.css'
 
 const CardInfo = (props) => {
     
-    let email = []; 
-    if(props.data.EMAIL !== undefined){
-        email = props.data.EMAIL[0];
-    }
-    
+    console.log('props', props.data)
+
+    let email = [];
     let phone = [];
-    if(props.data.PHONE !== undefined){
-        phone = props.data.PHONE[0];
-    }
+    if (props.data !== undefined) {
+        if(props.data.EMAIL !== undefined){
+            email = props.data.EMAIL[0];
+        }
+
+        if(props.data.PHONE !== undefined){
+            phone = props.data.PHONE[0];
+        }
+    } 
+
+    
     
     
     return(

@@ -3,13 +3,14 @@ import CardInfo from "../Cards/CardInfo";
 import Form from "../Forms/Form";
 import PostService from "../API/PostService";
 import Navbar from "../Navbar/Navbar";
-import nolead from "../API/PostService";
-
+import Error from "../Error/Error";
 
 const Base = () =>{
 
-    const[data, setData] = useState([])
-    const[nolead, setNolead] = useState([])
+
+
+
+    const[data, setData] = useState([]);
      //Get data
     // useEffect(() => {
     //     Axios.get('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=703935')
@@ -25,37 +26,43 @@ const Base = () =>{
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
         //setData([response.data.result])  
-        console.log('посты', posts)
-        
         setData([posts.result]);
     }
-    const tele = window.Telegram.WebApp;
-    const chatIdTelegram = tele.initDataUnsafe.user.id;
-    console.log('Tele.......', chatIdTelegram);
+
 
     useEffect(() => {
         fetchPosts()
     }, [])
 
-    return(
-        <div className="base-template">
-            <Navbar/>
-            <main>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            {data.map(data =>
-                                <CardInfo data={data} />
-                                
-                                //<p>{data.TITLE}</p> 
-                            )}
-                            <Form/>
+    if (data[0] !== undefined) {
+        return(
+            <div className="base-template">
+                <Navbar/>
+                <main>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                {data.map(data =>
+                                    <CardInfo data={data} />
+                                    
+                                    //<p>{data.TITLE}</p> 
+                                )}
+                                <Form/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
-    )
+                </main>
+            </div>
+        )
+    } else {
+        return(
+            <div className="base-template"> 
+                <Navbar/>
+                <Error/>
+            </div>
+        )
+    }
+    
 }
 
 export default Base;
