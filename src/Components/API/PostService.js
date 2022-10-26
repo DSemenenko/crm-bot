@@ -9,30 +9,40 @@ export default class PostService{
             const param1 = urlParams.get('id');
             
             
+            // получение лида  ----------------
             const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
             //const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=87443";       
             const response = await axios.get(url);
+            const ASSIGNED_BY_ID = response.data.result.ASSIGNED_BY_ID
+
             
+            // получение тг чат ID 
+            const tele = window.Telegram.WebApp;
+            const chatIdTelegram = tele.initDataUnsafe.user.id;
+            //получение айди узера Bitrix 
+            const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
+            const responseurlChat = await axios.get(urlChat);
+            //console.log(responseurlChat.data)
+
+            // if (ASSIGNED_BY_ID == responseurlChat.data) {
+            //     console.log(true)
+            // } else {
+            //     console.log(false)
+            // }
+
             const nolead = undefined;
             const combination ={
                 "param1": param1, 
                 "response": response.data
             }
             
-            const datalink = response.data.result.UF_CRM_1574625053;
-            //console.log('Наш айди', datalink)
-            
-            const tele = window.Telegram.WebApp;
-            const chatIdTelegram = tele.initDataUnsafe.user.id;
-            // console.log('Tele.......', chatIdTelegram);
             
             
             
-            
-            if (datalink == chatIdTelegram){   
+            if (ASSIGNED_BY_ID == responseurlChat.data){   
                 return combination;
             }else{
-                return nolead;
+                return undefined;
             }
 
         } catch (e){

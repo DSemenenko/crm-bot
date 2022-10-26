@@ -39,7 +39,15 @@ const Base = () =>{
         fetchPosts()
     }, [])
 
-    if (data[0] !== undefined) {
+
+    if (data[0] == undefined) {
+        return(
+            <div className="base-template"> 
+                <Navbar/>
+                <Error/>
+            </div>
+        )
+    } else {
         return(
             <div className="base-template">
                 <Navbar/>
@@ -59,14 +67,36 @@ const Base = () =>{
                 </main>
             </div>
         )
-    } else {
-        return(
-            <div className="base-template"> 
-                <Navbar/>
-                <Error/>
-            </div>
-        )
     }
+
+    // if (data[0] !== undefined) {
+    //     return(
+    //         <div className="base-template">
+    //             <Navbar/>
+    //             <main>
+    //                 <div className="container">
+    //                     <div className="row">
+    //                         <div className="col-md-12">
+    //                             {data.map(data =>
+    //                                 <CardInfo data={data} />
+                                    
+    //                                 //<p>{data.TITLE}</p> 
+    //                             )}
+    //                             <Form restid={restid}/>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </main>
+    //         </div>
+    //     )
+    // } else {
+    //     return(
+    //         <div className="base-template"> 
+    //             <Navbar/>
+    //             <Error/>
+    //         </div>
+    //     )
+    // }
     
 }
 
