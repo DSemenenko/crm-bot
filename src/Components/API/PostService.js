@@ -19,6 +19,7 @@ export default class PostService{
             // получение тг чат ID 
             const tele = window.Telegram.WebApp;
             const chatIdTelegram = tele.initDataUnsafe.user.id;
+            console.log('chat ', chatIdTelegram)
             //получение айди узера Bitrix 
             const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
             const responseurlChat = await axios.get(urlChat);
