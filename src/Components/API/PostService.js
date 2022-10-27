@@ -10,8 +10,7 @@ export default class PostService{
             
             
             // получение лида  ----------------
-            const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1;
-            //const url = "https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=87443";       
+            const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1; 
             const response = await axios.get(url);
             const ASSIGNED_BY_ID = response.data.result.ASSIGNED_BY_ID
 
@@ -21,9 +20,11 @@ export default class PostService{
             const chatIdTelegram = tele.initDataUnsafe.user.id;
             console.log('chat ', chatIdTelegram)
             //получение айди узера Bitrix 
-            const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
+            
+            //const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
+            const urlChat = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/user.get?filter[UF_SKYPE]=" + chatIdTelegram;
             const responseurlChat = await axios.get(urlChat);
-            //console.log(responseurlChat.data)
+            console.log(responseurlChat.data.result[0].ID)
 
             // if (ASSIGNED_BY_ID == responseurlChat.data) {
             //     console.log(true)
@@ -40,7 +41,7 @@ export default class PostService{
             
             
             
-            if (ASSIGNED_BY_ID == responseurlChat.data){   
+            if (ASSIGNED_BY_ID == responseurlChat.data.result[0].ID){   
                 return combination;
             }else{
                 return undefined;

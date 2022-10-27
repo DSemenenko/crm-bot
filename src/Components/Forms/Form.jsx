@@ -119,6 +119,7 @@ const Form = (props) => {
         return yyyy + "-" + mm + "-" + dd;
     };
     
+    
     function getLangDiv(){
         switch(lang){
             case "IN_PROCESS": 
@@ -218,7 +219,8 @@ const Form = (props) => {
 
                     <div className="mb-3 ">
                         <label className="form-label text-white">Date/Time</label>
-                        <input                  
+                        <input             
+                            min={new Date().toISOString().slice(0, -8)}    
                             inputProps={{
                                 // only needs the first 16 characters in the date string
                                 min: new Date().toISOString().slice(0, 16),
@@ -226,7 +228,6 @@ const Form = (props) => {
                             type="datetime-local"
                             className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
                             {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
-                            min={disablePastDate()}
                         />
                         {errors.UF_CRM_1553688545479 && <span className="invalid-feedback">The date should be choosed</span>}
                         <div id="emailHelp" class="form-text">The lead will show in planner</div>
