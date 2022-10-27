@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./Form.css";
 import Axios from 'axios';
 import {useForm} from 'react-hook-form';
-import param1 from "../API/PostService";
+import PostService from "../API/PostService";
+// import param1 from "../API/PostService";
 
-console.log('айди', param1);
+//console.log('айди', param1);
 
 // //Validation 
 // const Input= ({label, register, required}) => (
@@ -30,7 +31,26 @@ const Form = (props) => {
       } = useForm();
     
     // register = JSON.stringify([data])
-      
+
+
+    const[userID, setuserID] = useState('');
+    async function fetchPosts(){
+        const posts = await PostService.getAll();
+       // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
+        //console.log(response.data)    
+        //setData([response.data.result]) 
+        console.log(posts.CRM_ID)
+        setuserID(posts.CRM_ID)
+        // if(posts !== undefined){
+        //     setData([posts.response.result]);
+        //     setRestid(posts.param1);
+        // }
+    }
+
+    useEffect(() => {
+        fetchPosts()
+    }, [])
+
     const[message, setMessage] = useState('');
     const [lang, setLang] = useState(null);
 
@@ -39,7 +59,7 @@ const Form = (props) => {
     const [comment, setComment] = useState('');
     const [dateplan, setdateplan] = useState('');
     //const [select, setSelect] = useState('');
- 
+      
  
 
     // const { register, handleSubmit, errors, reset } = useForm();
@@ -98,11 +118,13 @@ const Form = (props) => {
         }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
         
         
-        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', { 
+        Axios.post('https://crm.axcap.ae/local/webhooks/setLeadFollowUp.php', { 
+            fields,
             "fields":{
                 "ENTITY_ID": props.restid,
                 "ENTITY_TYPE": "lead",
-                "COMMENT": fields.COMMENT
+                "COMMENT": fields.COMMENT,
+                "AUTHOR_ID": userID
             }
         }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
         setMessage(`-- Lead has been update successful --`);
@@ -110,14 +132,14 @@ const Form = (props) => {
       };
 
 
-    const disablePastDate = () => {
-        var today,dd,mm,yyyy;
-        today = new Date();
-        dd = String(today.getDate() + 1).padStart(2, "0");
-        mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-        yyyy = today.getFullYear();
-        return yyyy + "-" + mm + "-" + dd;
-    };
+    // const disablePastDate = () => {
+    //     var today,dd,mm,yyyy;
+    //     today = new Date();
+    //     dd = String(today.getDate() + 1).padStart(2, "0");
+    //     mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    //     yyyy = today.getFullYear();
+    //     return yyyy + "-" + mm + "-" + dd;
+    // };
     
     
     function getLangDiv(){

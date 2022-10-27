@@ -24,7 +24,7 @@ export default class PostService{
             //const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
             const urlChat = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/user.get?filter[UF_SKYPE]=" + chatIdTelegram;
             const responseurlChat = await axios.get(urlChat);
-            console.log(responseurlChat.data.result[0].ID)
+            console.log('id crm', responseurlChat.data.result[0].ID)
 
             // if (ASSIGNED_BY_ID == responseurlChat.data) {
             //     console.log(true)
@@ -35,7 +35,8 @@ export default class PostService{
             const nolead = undefined;
             const combination ={
                 "param1": param1, 
-                "response": response.data
+                "response": response.data,
+                "CRM_ID": responseurlChat.data.result[0].ID
             }
             
             
