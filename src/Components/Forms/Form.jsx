@@ -39,7 +39,6 @@ const Form = (props) => {
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
         //setData([response.data.result]) 
-        console.log(posts.CRM_ID)
         setuserID(posts.CRM_ID)
         // if(posts !== undefined){
         //     setData([posts.response.result]);
@@ -89,11 +88,19 @@ const Form = (props) => {
     // }
 
    
+    // const utcDate = new Date(Date.UTC(2018, 11, 1, 0, 0, 0));
+    // console.log(utcDate)
+
+   
+
 
     const onSubmit = (fields) => {
-        console.log(JSON.stringify(fields));
-         console.log('массив', fields.COMMENT);
+        //console.log(JSON.stringify(fields));
         
+        
+        const utcDate = new Date().valueOf(fields.UF_CRM_1553688545479);
+        const stempData = Math.floor(Date.now(utcDate) / 1000);
+
         // const arraytest = [];
         // const test = arraytest.push('hhhhhhhhh', UF_CRM_1553506485)
         // console.log(test)
@@ -118,29 +125,18 @@ const Form = (props) => {
         }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
         
         
-        Axios.post('https://crm.axcap.ae/local/webhooks/setLeadFollowUp.php', { 
+        Axios.post('https://hook.integromat.com/qno2ekhm7e2tooc7ku1f0dh1aqoi6glw', { 
             fields,
             "fields":{
                 "ENTITY_ID": props.restid,
-                "ENTITY_TYPE": "lead",
                 "COMMENT": fields.COMMENT,
-                "AUTHOR_ID": userID
+                "AUTHOR_ID": userID,
+                "DATE": stempData
             }
-        }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
+        }).then(fields => console.log('Posting data', fields.UF_CRM_1553688545479)).catch(err => console.log(err ));
         setMessage(`-- Lead has been update successful --`);
         reset();
       };
-
-
-    // const disablePastDate = () => {
-    //     var today,dd,mm,yyyy;
-    //     today = new Date();
-    //     dd = String(today.getDate() + 1).padStart(2, "0");
-    //     mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    //     yyyy = today.getFullYear();
-    //     return yyyy + "-" + mm + "-" + dd;
-    // };
-    
     
     function getLangDiv(){
         switch(lang){
@@ -202,51 +198,16 @@ const Form = (props) => {
                         </select>
                         {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
                     </div>
-
-                    {/* <div className="form-floating">
-                        <select 
-                            className="form-label form-control form-select"
-                            {...register("UF_CRM_1553506485[0]", {required: false})}
-                        >
-                            <option value="">--Add  language--</option>
-                            <option value="2925">English</option>
-                            <option value="2927">Arabic</option>
-                            <option value="2926">Russian</option>
-                            <option value="2928">Urdu</option>
-                            <option value="2931">German</option>
-                            <option value="2932">French</option>
-                            <option value="4227">Hindi</option>
-                            <option value="5085">Farsi</option>
-                            <option value="5943">Italian</option>
-                            <option value="11420">Portuguese</option>
-                            <option value="6834">Spanish</option>
-                            <option value="6943">Kazakh</option>
-                            <option value="6944">Uzbek</option>
-                            <option value="8142">Romanian</option>
-                            <option value="10523">Ukranian</option>
-                            <option value="10524">Belorusian</option>
-                            <option value="11382">Azerbaijan</option>
-                            <option value="11383">Chechen</option>
-                            <option value="12058">Dutch</option>
-                            <option value="12082">Hebrew</option>
-                            <option value="12407">Czech</option>
-                            <option value="16871">Chinese</option>
-                            <option value="16915">Polish</option>
-                        </select>
-                        <label for="floatingSelect">Update LEAD language</label>
-                    </div> */}
-
                     {getLangDiv()}
                     
-
                     <div className="mb-3 ">
                         <label className="form-label text-white">Date/Time</label>
                         <input             
                             min={new Date().toISOString().slice(0, -8)}    
-                            inputProps={{
-                                // only needs the first 16 characters in the date string
-                                min: new Date().toISOString().slice(0, 16),
-                              }}         
+                            // inputProps={{
+                            //     // only needs the first 16 characters in the date string
+                            //     min: new Date().toISOString().slice(0, 16),
+                            //   }}         
                             type="datetime-local"
                             className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
                             {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
@@ -271,20 +232,6 @@ const Form = (props) => {
                             {message}
                         </div>
                     </div>
-
-                    {/* <div className="form-floating">
-                        <select className="form-label form-control form-select" value={select} onChange={(e) => setSelect(e.target.value)}>
-                            <option selected value="New">New</option>
-                            <option value="Contacted">Contacted</option>
-                            <option value="Option sent">Option sent</option>
-                            <option value="Option sent">Warm</option>
-                            <option value="Option sent">HOT</option>
-                            <option value="Option sent">Customer</option>
-                            <option value="Option sent">Unsuccessful</option>
-                        </select>
-                        <label for="floatingSelect">Update LEAD status</label>
-                    </div> */}
-                    {/* <button className="btn planned" onClick={postData}>Planned</button> */}
                     <input className="btn btn-danger planned" type="submit"/>
                 </form>    
             </div>            

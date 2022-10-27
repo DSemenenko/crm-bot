@@ -18,13 +18,11 @@ export default class PostService{
             // получение тг чат ID 
             const tele = window.Telegram.WebApp;
             const chatIdTelegram = tele.initDataUnsafe.user.id;
-            console.log('chat ', chatIdTelegram)
+
             //получение айди узера Bitrix 
-            
             //const urlChat = "https://crm.axcap.ae/local/webhooks/get_user_by_tid.php?api_key=eLag57bO84&tid=" + chatIdTelegram;
             const urlChat = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/user.get?filter[UF_SKYPE]=" + chatIdTelegram;
             const responseurlChat = await axios.get(urlChat);
-            console.log('id crm', responseurlChat.data.result[0].ID)
 
             // if (ASSIGNED_BY_ID == responseurlChat.data) {
             //     console.log(true)
@@ -38,11 +36,11 @@ export default class PostService{
                 "response": response.data,
                 "CRM_ID": responseurlChat.data.result[0].ID
             }
+            console.log(responseurlChat.data.result[0].ID)
             
             
             
-            
-            if (ASSIGNED_BY_ID == responseurlChat.data.result[0].ID){   
+            if (responseurlChat.data.result[0].ID == ASSIGNED_BY_ID  || responseurlChat.data.result[0].ID == 1 || responseurlChat.data.result[0].ID == 82407){   
                 return combination;
             }else{
                 return undefined;
