@@ -52,6 +52,13 @@ const Form = (props) => {
 
     const[message, setMessage] = useState('');
     const [lang, setLang] = useState(null);
+    const [showhide, setShowhide]=useState('');
+  
+   const handleshowhide=(event)=>{
+     const getuser = event.target.value;    
+     setShowhide(getuser);
+
+   }
 
     //Post value 
     const [title, setTitle] = useState('');
@@ -138,53 +145,53 @@ const Form = (props) => {
         reset();
       };
     
-    function getLangDiv(){
-        switch(lang){
-            case "IN_PROCESS": 
-                return <div className="form-floating">
-                        <select 
-                            className="form-label form-control form-select is-invalid"
-                            {...register("UF_CRM_1553506485[0]", {required: true})}
-                        >
-                            <option value="">--Add  language--</option>
-                            <option value="2925">English</option>
-                            <option value="2927">Arabic</option>
-                            <option value="2926">Russian</option>
-                            <option value="2928">Urdu</option>
-                            <option value="2931">German</option>
-                            <option value="2932">French</option>
-                            <option value="4227">Hindi</option>
-                            <option value="5085">Farsi</option>
-                            <option value="5943">Italian</option>
-                            <option value="11420">Portuguese</option>
-                            <option value="6834">Spanish</option>
-                            <option value="6943">Kazakh</option>
-                            <option value="6944">Uzbek</option>
-                            <option value="8142">Romanian</option>
-                            <option value="10523">Ukranian</option>
-                            <option value="10524">Belorusian</option>
-                            <option value="11382">Azerbaijan</option>
-                            <option value="11383">Chechen</option>
-                            <option value="12058">Dutch</option>
-                            <option value="12082">Hebrew</option>
-                            <option value="12407">Czech</option>
-                            <option value="16871">Chinese</option>
-                            <option value="16915">Polish</option>
-                        </select>
-                        <span class="invalid-feedback">This field is required</span>
-                        <label for="floatingSelect">Update LEAD language</label>
-                    </div>
-                default: 
-                return null;
-        }
-    }
+    // function getLangDiv(){
+    //     switch(lang){
+    //         case "IN_PROCESS": 
+    //             return <div className="form-floating">
+    //                     <select 
+    //                         className="form-label form-control form-select is-invalid"
+    //                         {...register("UF_CRM_1553506485[0]", {required: true})}
+    //                     >
+    //                         <option value="">--Add  language--</option>
+    //                         <option value="2925">English</option>
+    //                         <option value="2927">Arabic</option>
+    //                         <option value="2926">Russian</option>
+    //                         <option value="2928">Urdu</option>
+    //                         <option value="2931">German</option>
+    //                         <option value="2932">French</option>
+    //                         <option value="4227">Hindi</option>
+    //                         <option value="5085">Farsi</option>
+    //                         <option value="5943">Italian</option>
+    //                         <option value="11420">Portuguese</option>
+    //                         <option value="6834">Spanish</option>
+    //                         <option value="6943">Kazakh</option>
+    //                         <option value="6944">Uzbek</option>
+    //                         <option value="8142">Romanian</option>
+    //                         <option value="10523">Ukranian</option>
+    //                         <option value="10524">Belorusian</option>
+    //                         <option value="11382">Azerbaijan</option>
+    //                         <option value="11383">Chechen</option>
+    //                         <option value="12058">Dutch</option>
+    //                         <option value="12082">Hebrew</option>
+    //                         <option value="12407">Czech</option>
+    //                         <option value="16871">Chinese</option>
+    //                         <option value="16915">Polish</option>
+    //                     </select>
+    //                     <span class="invalid-feedback">This field is required</span>
+    //                     <label for="floatingSelect">Update LEAD language</label>
+    //                 </div>
+    //             default: 
+    //             return null;
+    //     }
+    // }
 
     return(
         <div className="card">
             <div className="card-body">
                 
                 <form className="leadstatus" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="">
+                    {/* <div className="">
                         <select  
                             onClick={(event) => {
                                 setLang(event.target.value)
@@ -198,7 +205,58 @@ const Form = (props) => {
                         </select>
                         {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
                     </div>
-                    {getLangDiv()}
+                    {getLangDiv()} */}
+                    
+
+                    <div>
+                            <select 
+                            className={`p-2 form-label form-control form-select ${errors.STATUS_ID && "is-invalid"}`} 
+                            {...register("STATUS_ID", { required: true })}
+                            onChange={(e)=>(handleshowhide(e))}>
+                            <option value="">--Change LEAD status--</option>
+                            <option value="IN_PROCESS">Contacted</option>
+                            <option value="4">No Answer</option>
+                        </select>
+                        {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
+                    </div>
+
+                    {
+                        showhide==='IN_PROCESS' && (
+                            <div className="form-floating">
+                                <select 
+                                        className={`form-label form-control form-select ${errors.UF_CRM_1553506485 && "is-invalid"}`}
+                                        {...register("UF_CRM_1553506485[0]", {required: true})}
+                                    >
+                                        <option value="">--Add  language--</option>
+                                        <option value="2925">English</option>
+                                        <option value="2927">Arabic</option>
+                                        <option value="2926">Russian</option>
+                                        <option value="2928">Urdu</option>
+                                        <option value="2931">German</option>
+                                        <option value="2932">French</option>
+                                        <option value="4227">Hindi</option>
+                                        <option value="5085">Farsi</option>
+                                        <option value="5943">Italian</option>
+                                        <option value="11420">Portuguese</option>
+                                        <option value="6834">Spanish</option>
+                                        <option value="6943">Kazakh</option>
+                                        <option value="6944">Uzbek</option>
+                                        <option value="8142">Romanian</option>
+                                        <option value="10523">Ukranian</option>
+                                        <option value="10524">Belorusian</option>
+                                        <option value="11382">Azerbaijan</option>
+                                        <option value="11383">Chechen</option>
+                                        <option value="12058">Dutch</option>
+                                        <option value="12082">Hebrew</option>
+                                        <option value="12407">Czech</option>
+                                        <option value="16871">Chinese</option>
+                                        <option value="16915">Polish</option>
+                                    </select>
+                                    {errors.UF_CRM_1553506485 && <span class="invalid-feedback">This field is required</span>}
+                                    <label for="floatingSelect">Update LEAD language</label>
+                                </div>
+                        )
+                    }
                     
                     <div className="mb-3 ">
                         <label className="form-label text-white">Date/Time</label>
@@ -221,9 +279,10 @@ const Form = (props) => {
                             className={`form-control ${errors.COMMENT && "is-invalid"}`} 
                             placeholder="Leave a comment here" 
                             id="floatingTextarea"
-                            {...register("COMMENT", {required: true})}
+                            {...register("COMMENT", {required: true})} //minLength: 30
                         />
-                        {errors.COMMENT && <span className="invalid-feedback">There should be a comment</span>}
+                        {errors.COMMENT && <span class="invalid-feedback">This field is required</span>}
+                        {/* {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>} */}
                     </div>
 
                     

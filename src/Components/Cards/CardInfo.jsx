@@ -45,8 +45,8 @@ const CardInfo = (props) => {
 
             <div className="card mb-3 text-white">
                 <div className="card-body">
-                    <p className="card-title"><span className="text-warning">Phone:</span> <a href="tel:{phone.VALUE}" className="text-white">{phone.VALUE}</a></p>
-                    <p className="card-title"><span className="text-warning">E-mail:</span> <a href="mailto:{email.VALUE}" className="text-white">{email.VALUE}</a></p>
+                    <p className="card-title"><span className="text-warning">Phone:</span> <a href={`tel:${phone.VALUE}`} className="text-white">{phone.VALUE}</a></p>
+                    <p className="card-title"><span className="text-warning">E-mail:</span> <a href={`mailto:${email.VALUE}`} className="text-white">{email.VALUE}</a></p>
                     <p className="card-title"><span className="text-warning">Messengers:</span></p>
                     <div className="d-flex justify-content-between call-buttons gap-3">
                         {/* <button className="btn btn-primary">
