@@ -34,12 +34,19 @@ export default class PostService{
             const combination ={
                 "param1": param1, 
                 "response": response.data,
-                "CRM_ID": responseurlChat.data.result[0].ID
+                "CRM_ID": responseurlChat.data.result[0].ID,
+                "managment_id": {
+                    "Tosin": 870811629, 
+                    "Otabek": 154679895,
+                    "Denis": 313203995,
+                    "David": 5591115278
+                },
+                "chatIdTelegram": chatIdTelegram
             }
             
             
             
-            if (responseurlChat.data.result[0].ID == ASSIGNED_BY_ID  || responseurlChat.data.result[0].ID == 1 || responseurlChat.data.result[0].ID == 82407){   
+            if (responseurlChat.data.result[0].ID == ASSIGNED_BY_ID  || responseurlChat.data.result[0].ID == 1 || responseurlChat.data.result[0].ID == 82407 || responseurlChat.data.result[0].ID == 7 || responseurlChat.data.result[0].ID == 6){   
                 return combination;
             }else{
                 return undefined;

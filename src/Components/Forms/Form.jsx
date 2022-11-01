@@ -55,15 +55,18 @@ const Form = (props) => {
     
     async function appUsed(){
         const posts = await PostService.getAll(); 
-        //console.log(posts.response.result.STATUS_ID)
+        // console.log(posts.managment_id.David)
+        // console.log(posts.chatIdTelegram);
 
-        if(posts.response.result.STATUS_ID == "NEW"){
-            Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', {
-                "id": posts.param1,
-                "fields": {
-                    "STATUS_ID": "4"
-                }
-            }).then(fields => console.log('No answer default', fields)).catch(err => console.log(err ));
+        if (posts.managment_id.David ==! posts.chatIdTelegram || posts.managment_id.Tosin ==! posts.chatIdTelegram || posts.managment_id.Otabek ==! posts.chatIdTelegram || posts.managment_id.Denis ==! posts.chatIdTelegram) {
+            if(posts.response.result.STATUS_ID == "NEW"){
+                Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', {
+                    "id": posts.param1,
+                    "fields": {
+                        "STATUS_ID": "4"
+                    }
+                }).then(fields => console.log('No answer default', fields)).catch(err => console.log(err ));
+            }
         }
 
         Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', {
