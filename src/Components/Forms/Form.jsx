@@ -67,16 +67,15 @@ const Form = (props) => {
                     }
                 }).then(fields => console.log('No answer default', fields)).catch(err => console.log(err ));
             }
+            Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', {
+                "fields": {
+                    "ENTITY_ID": posts.param1, 
+                    "AUTHOR_ID": posts.CRM_ID,
+                    "ENTITY_TYPE": "LEAD",  
+                    "COMMENT": "Lead has been viewed from Telegram Mobile APP"
+                }
+            }).then(fields => console.log('Post lead was viewed', fields)).catch(err => console.log(err ));
         }
-
-        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', {
-            "fields": {
-                "ENTITY_ID": posts.param1, 
-                "AUTHOR_ID": posts.CRM_ID,
-                "ENTITY_TYPE": "LEAD",  
-                "COMMENT": "Lead has been viewed from Telegram Mobile APP"
-            }
-        }).then(fields => console.log('Post lead was viewed', fields)).catch(err => console.log(err ));
     }
 
     useEffect(() => {
