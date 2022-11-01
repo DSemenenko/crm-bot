@@ -312,10 +312,10 @@ const Form = (props) => {
                             className={`form-control ${errors.COMMENT && "is-invalid"}`} 
                             placeholder="Leave a comment here" 
                             id="floatingTextarea"
-                            {...register("COMMENT", {required: true})} //minLength: 30
+                            {...register("COMMENT", {required: true, minLength: 30})} 
                         />
-                        {errors.COMMENT && <span class="invalid-feedback">This field is required</span>}
-                        {/* {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>} */}
+                        {/* {errors.COMMENT && <span class="invalid-feedback">This field is required</span>} */}
+                        {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>}
                     </div>
 
                     
