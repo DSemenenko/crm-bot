@@ -13,7 +13,7 @@ export default class PostService{
             const url = "https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get.json?id=" + param1; 
             const response = await axios.get(url);
             const ASSIGNED_BY_ID = response.data.result.ASSIGNED_BY_ID
-
+            
             
             // получение тг чат ID 
             const tele = window.Telegram.WebApp;

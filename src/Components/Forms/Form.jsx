@@ -32,22 +32,53 @@ const Form = (props) => {
     
     // register = JSON.stringify([data])
 
-
     const[userID, setuserID] = useState('');
+    const[usedBy, setusedBy] = useState('');
+
     async function fetchPosts(){
         const posts = await PostService.getAll();
        // const response = await Axios.get('https://jsonplaceholder.typicode.com/posts')
         //console.log(response.data)    
         //setData([response.data.result]) 
         setuserID(posts.CRM_ID)
+        setusedBy(posts)
         // if(posts !== undefined){
         //     setData([posts.response.result]);
         //     setRestid(posts.param1);
         // }
     }
+    
+    // function test (usedBy){
+    //     console.log(usedBy)
+    // }
+    // test()
+    
+    async function appUsed(){
+        const posts = await PostService.getAll(); 
+        //console.log(posts.response.result.STATUS_ID)
+
+        if(posts.response.result.STATUS_ID == "NEW"){
+            Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', {
+                "id": posts.param1,
+                "fields": {
+                    "STATUS_ID": "4"
+                }
+            }).then(fields => console.log('No answer default', fields)).catch(err => console.log(err ));
+        }
+
+        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.timeline.comment.add/', {
+            "fields": {
+                "ENTITY_ID": posts.param1, 
+                "AUTHOR_ID": posts.CRM_ID,
+                "ENTITY_TYPE": "LEAD",  
+                "COMMENT": "Lead has been viewed from Telegram Mobile APP"
+            }
+        }).then(fields => console.log('Post lead was viewed', fields)).catch(err => console.log(err ));
+    }
 
     useEffect(() => {
         fetchPosts()
+        appUsed()
     }, [])
 
     const[message, setMessage] = useState('');
