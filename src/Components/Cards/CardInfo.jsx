@@ -30,9 +30,6 @@ const CardInfo = (props) => {
         elemstat = <div className="card-body p-2 text-center" style={{background: "#fff467", color: "#000"}}>{status}</div>
     }
 
-    function callto() {
-        window.open(`tel:${phone.VALUE}`, "_top");
-    }
     
     return(
         <div>
@@ -49,9 +46,16 @@ const CardInfo = (props) => {
 
             <div className="card mb-3 text-white">
                 <div className="card-body">
-                    <p className="card-title"><span className="text-warning">Phone:</span> <a onClick={callto} className="text-white">{phone.VALUE}</a></p>
-                    <p className="card-title"><span className="text-warning">E-mail:</span> <a href={`mailto:${email.VALUE}`} className="text-white">{email.VALUE}</a></p>
-                    <p className="card-title"><span className="text-warning">Messengers:</span></p>
+                    <div className="d-flex justify-content-between contact-btn align-items-center">
+                        <p className="card-title"><span className="text-warning">Phone:</span> <a href={`https://hook.integromat.com/z086mv296aa5nsy41wwgehscz59ai57i?action=tel&value=${phone.VALUE}`} className="text-white">{phone.VALUE}</a></p>
+                        {/* <button onClick={() =>  navigator.clipboard.writeText(`${phone.VALUE}`)} className="btn btn-primary">Copy</button> */}
+                    </div>
+                    <div className="d-flex justify-content-between contact-btn align-items-center">
+                        <p className="card-title"><span className="text-warning">E-mail:</span> <a href={`https://hook.integromat.com/z086mv296aa5nsy41wwgehscz59ai57i?action=mail&value=${email.VALUE}`} className="text-white">{email.VALUE}</a></p>
+                        {/* <button onClick={() =>  navigator.clipboard.writeText(`${email.VALUE}`)} className="btn btn-primary">Copy</button> */}
+                        
+                    </div>
+                    <p className="card-title mt-3"><span className="text-warning">Messengers:</span></p>
                     <div className="d-flex justify-content-between call-buttons gap-3">
                         {/* <button className="btn btn-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">

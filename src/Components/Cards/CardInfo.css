@@ -8,3 +8,17 @@
     justify-content: center;
     gap: 5px;
 }
+.contact-btn button{
+    font-family: 'Roboto';
+    font-size: 14px;
+}
+.contact-btn p{
+    margin: 0;
+}
+.contact-btn{
+    border-bottom: 1px solid #a25d41;
+    padding: 15px 0;
+}
+.contact-btn button:focus {
+    background-color: #198754!important;
+}
