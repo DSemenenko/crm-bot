@@ -135,8 +135,8 @@ const Form = (props) => {
         //console.log(JSON.stringify(fields));
         
         
-        const utcDate = new Date().valueOf(fields.UF_CRM_1553688545479);
-        const stempData = Math.floor(Date.now(utcDate) / 1000);
+        // const utcDate = new Date().valueOf(fields.UF_CRM_1553688545479);
+        // const stempData = Math.floor(Date.now(utcDate) / 1000);
 
         // const arraytest = [];
         // const test = arraytest.push('hhhhhhhhh', UF_CRM_1553506485)
@@ -168,7 +168,7 @@ const Form = (props) => {
                 "ENTITY_ID": props.restid,
                 "COMMENT": fields.COMMENT,
                 "AUTHOR_ID": userID,
-                "DATE": stempData
+                "DATE": fields.UF_CRM_1553688545479
             }
         }).then(fields => console.log('Posting data', fields.UF_CRM_1553688545479)).catch(err => console.log(err ));
         setMessage(`-- Lead has been update successful --`);
