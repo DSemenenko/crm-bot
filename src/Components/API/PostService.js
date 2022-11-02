@@ -41,7 +41,8 @@ export default class PostService{
                     "Denis": 313203995,
                     "David": 5591115278
                 },
-                "chatIdTelegram": chatIdTelegram
+                "chatIdTelegram": chatIdTelegram,
+                "ASSIGNED_BY_ID": ASSIGNED_BY_ID
             }
             
             

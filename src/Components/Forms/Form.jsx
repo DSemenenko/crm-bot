@@ -55,10 +55,7 @@ const Form = (props) => {
     
     async function appUsed(){
         const posts = await PostService.getAll(); 
-        // console.log(posts.managment_id.David)
-        // console.log(posts.chatIdTelegram);
-
-        if (posts.managment_id.David ==! posts.chatIdTelegram || posts.managment_id.Tosin ==! posts.chatIdTelegram || posts.managment_id.Otabek ==! posts.chatIdTelegram || posts.managment_id.Denis ==! posts.chatIdTelegram) {
+        if (posts.CRM_ID == posts.ASSIGNED_BY_ID || posts.CRM_ID == 1 || posts.CRM_ID == 82407) {
             if(posts.response.result.STATUS_ID == "NEW"){
                 Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', {
                     "id": posts.param1,
@@ -74,7 +71,7 @@ const Form = (props) => {
                     "ENTITY_TYPE": "LEAD",  
                     "COMMENT": "Lead has been viewed from Telegram Mobile APP"
                 }
-            }).then(fields => console.log('Post lead was viewed', fields)).catch(err => console.log(err ));
+            }).then(fields => console.log('Post lead was viewed')).catch(err => console.log(err ));
         }
     }
 
