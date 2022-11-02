@@ -16,7 +16,6 @@ const CardInfo = (props) => {
         }
     } 
 
-
     let status = [];
     let elemstat;
     if (props.data.STATUS_ID == "NEW") {
@@ -46,6 +45,10 @@ const CardInfo = (props) => {
 
             <div className="card mb-3 text-white">
                 <div className="card-body">
+                    <div className="d-flex justify-content-between contact-btn align-items-center">
+                        <p className="card-title"><span className="text-warning">IP Country:</span> <span>{props.data.UF_CRM_1585947183}</span></p>
+                        
+                    </div>
                     <div className="d-flex justify-content-between contact-btn align-items-center">
                         <p className="card-title"><span className="text-warning">Phone:</span> <a href={`https://hook.integromat.com/z086mv296aa5nsy41wwgehscz59ai57i?action=tel&value=${phone.VALUE}`} className="text-white">{phone.VALUE}</a></p>
                         {/* <button onClick={() =>  navigator.clipboard.writeText(`${phone.VALUE}`)} className="btn btn-primary">Copy</button> */}
