@@ -29,6 +29,10 @@ const CardInfo = (props) => {
         status = "Contacted"
         elemstat = <div className="card-body p-2 text-center" style={{background: "#fff467", color: "#000"}}>{status}</div>
     }
+
+    function callto() {
+        window.open(`tel:${phone.VALUE}`, "_top");
+    }
     
     return(
         <div>
@@ -45,7 +49,7 @@ const CardInfo = (props) => {
 
             <div className="card mb-3 text-white">
                 <div className="card-body">
-                    <p className="card-title"><span className="text-warning">Phone:</span> <a href={`tel:${phone.VALUE}`} className="text-white">{phone.VALUE}</a></p>
+                    <p className="card-title"><span className="text-warning">Phone:</span> <a onClick={callto} className="text-white">{phone.VALUE}</a></p>
                     <p className="card-title"><span className="text-warning">E-mail:</span> <a href={`mailto:${email.VALUE}`} className="text-white">{email.VALUE}</a></p>
                     <p className="card-title"><span className="text-warning">Messengers:</span></p>
                     <div className="d-flex justify-content-between call-buttons gap-3">
