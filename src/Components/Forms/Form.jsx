@@ -57,14 +57,10 @@ const Form = (props) => {
         }
     }
 
-    
-
     useEffect(() => {
         fetchPosts()
         appUsed()
     }, [])
-    
-
 
     const[message, setMessage] = useState('');
     const [lang, setLang] = useState(null);
