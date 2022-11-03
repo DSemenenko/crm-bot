@@ -3,22 +3,7 @@ import "./Form.css";
 import Axios from 'axios';
 import {useForm} from 'react-hook-form';
 import PostService from "../API/PostService";
-// import param1 from "../API/PostService";
 
-//console.log('айди', param1);
-
-// //Validation 
-// const Input= ({label, register, required}) => (
-//     <>
-//         <textarea 
-//             {...register("comment", { required: true })} 
-//             className={`form-control is-invalid ${errors.comment && "is-invalid"}`} 
-//             aria-describedby="validationServer03Feedback" 
-//             id="validationServer03"
-//         />
-//         <label for="validationServer03" class="form-label">{label}</label>
-//     </>
-// );
 
 const Form = (props) => {
     //Get value
@@ -48,10 +33,7 @@ const Form = (props) => {
         // }
     }
     
-    // function test (usedBy){
-    //     console.log(usedBy)
-    // }
-    // test()
+    
     
     async function appUsed(){
         const posts = await PostService.getAll(); 
@@ -75,10 +57,14 @@ const Form = (props) => {
         }
     }
 
+    
+
     useEffect(() => {
         fetchPosts()
         appUsed()
     }, [])
+    
+
 
     const[message, setMessage] = useState('');
     const [lang, setLang] = useState(null);
@@ -96,63 +82,10 @@ const Form = (props) => {
     const [dateplan, setdateplan] = useState('');
     //const [select, setSelect] = useState('');
       
- 
-
-    // const { register, handleSubmit, errors, reset } = useForm();
-    
-
-    // // Get data
-    // useEffect(() => {
-    //     Axios.get('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=703935')
-    //     .then(res => {
-    //         console.log("Getting from :::::", res.data)
-    //         setDate(res.data)
-    //     }).catch(err => console.log(err))
-    // }, [])
-
-
-    // Post method
-    // const postData = (e) => {
-    //     e.preventDefault();
-    //     setComment('');
-    //     setdateplan('');
-    //     setTitle('');
-    //     Axios.post('https://hook.integromat.com/5xa5g97w05id7jg7iyk61nrqvh9ahmwm', {
-    //         statuslead,
-    //         dateplan,
-    //         comment,
-    //     }).then(res => console.log('Posting data', res)).catch(err => console.log(err ));
-    // }
-
-   
-    // const utcDate = new Date(Date.UTC(2018, 11, 1, 0, 0, 0));
-    // console.log(utcDate)
-
-   
-
 
     const onSubmit = (fields) => {
         //console.log(JSON.stringify(fields));
-        
-        
-        // const utcDate = new Date().valueOf(fields.UF_CRM_1553688545479);
-        // const stempData = Math.floor(Date.now(utcDate) / 1000);
-
-        // const arraytest = [];
-        // const test = arraytest.push('hhhhhhhhh', UF_CRM_1553506485)
-        // console.log(test)
-
-        // Axios.post('https://crmdev2.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update', { 
-        //     "id": 87443,
-        //     fields, 
-        //     "params": {
-        //         "REGISTER_SONET_EVENT": "Y"
-        //     },
-            
-        // }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
-        // this.fields.concat('')
-        
-        
+             
         Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
             "id": props.restid,
             fields,
@@ -175,69 +108,12 @@ const Form = (props) => {
         reset();
       };
     
-    // function getLangDiv(){
-    //     switch(lang){
-    //         case "IN_PROCESS": 
-    //             return <div className="form-floating">
-    //                     <select 
-    //                         className="form-label form-control form-select is-invalid"
-    //                         {...register("UF_CRM_1553506485[0]", {required: true})}
-    //                     >
-    //                         <option value="">--Add  language--</option>
-    //                         <option value="2925">English</option>
-    //                         <option value="2927">Arabic</option>
-    //                         <option value="2926">Russian</option>
-    //                         <option value="2928">Urdu</option>
-    //                         <option value="2931">German</option>
-    //                         <option value="2932">French</option>
-    //                         <option value="4227">Hindi</option>
-    //                         <option value="5085">Farsi</option>
-    //                         <option value="5943">Italian</option>
-    //                         <option value="11420">Portuguese</option>
-    //                         <option value="6834">Spanish</option>
-    //                         <option value="6943">Kazakh</option>
-    //                         <option value="6944">Uzbek</option>
-    //                         <option value="8142">Romanian</option>
-    //                         <option value="10523">Ukranian</option>
-    //                         <option value="10524">Belorusian</option>
-    //                         <option value="11382">Azerbaijan</option>
-    //                         <option value="11383">Chechen</option>
-    //                         <option value="12058">Dutch</option>
-    //                         <option value="12082">Hebrew</option>
-    //                         <option value="12407">Czech</option>
-    //                         <option value="16871">Chinese</option>
-    //                         <option value="16915">Polish</option>
-    //                     </select>
-    //                     <span class="invalid-feedback">This field is required</span>
-    //                     <label for="floatingSelect">Update LEAD language</label>
-    //                 </div>
-    //             default: 
-    //             return null;
-    //     }
-    // }
 
     return(
         <div className="card">
             <div className="card-body">
                 
                 <form className="leadstatus" onSubmit={handleSubmit(onSubmit)}>
-                    {/* <div className="">
-                        <select  
-                            onClick={(event) => {
-                                setLang(event.target.value)
-                            }}
-                            className={`p-2 form-label form-control form-select ${errors.STATUS_ID && "is-invalid"}`} 
-                            {...register("STATUS_ID", { required: 'Gender is required' })} 
-                        >
-                            <option value="">--Change LEAD status--</option>
-                            <option value="IN_PROCESS">Contacted</option>
-                            <option value="4">No Answer</option>
-                        </select>
-                        {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
-                    </div>
-                    {getLangDiv()} */}
-                    
-
                     <div>
                             <select 
                             className={`p-2 form-label form-control form-select ${errors.STATUS_ID && "is-invalid"}`} 
