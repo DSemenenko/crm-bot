@@ -1,7 +1,28 @@
 const { Telegraf, Markup } = require('telegraf')
+const fetch = (...args) =>
+	import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-const TOKEN = '5708943995:AAE9clSNeeOHVUNHE7gvimr98_uKu8RMLBQ';
+const TOKEN = '5627019585:AAGjFs6GKLJ9RV2VzxzufZI_kfY80eskB-s';
 const bot = new Telegraf(TOKEN);
+
+
+const id = 742288;
+
+bot.command('lead', async(ctx) => {
+    await ctx.reply('Lead Status: ', Markup.inlineKeyboard([
+        [Markup.button.webApp('Open Test Lead', 'https://d97d-91-72-172-198.in.ngrok.io/?id=742288')]
+    ]))
+    console.log(ctx)
+    fetch('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=' + id)
+        .then((response) => response.json())
+        .then((data) => console.log(data.result.STATUS_ID));
+})
+
+bot.use((ctx) => {
+    console.log(ctx)
+})
+
+
 
 //кнопки
 bot.command('start', async (ctx) => {

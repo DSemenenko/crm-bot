@@ -25,6 +25,12 @@ const CardInfo = (props) => {
     } else if (props.data.STATUS_ID == "4") {
         status = `No Answer`
         elemstat = <div className="card-body p-2 text-center" style={{background: "#fead99", color: "#000"}}>{status}</div>
+    } else if (props.data.STATUS_ID == "JUNK") {
+        status = `Junk Lead`
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#ff5c5a", color: "#000"}}>{status}</div>
+    }else if (props.data.STATUS_ID == "1") {
+        status = `Unsuccessful`
+        elemstat = <div className="card-body p-2 text-center" style={{background: "#acacac", color: "#333"}}>{status}</div>
     } else {
         status = "Contacted"
         elemstat = <div className="card-body p-2 text-center" style={{background: "#fff467", color: "#000"}}>{status}</div>

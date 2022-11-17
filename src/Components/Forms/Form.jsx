@@ -79,30 +79,54 @@ const Form = (props) => {
     //const [select, setSelect] = useState('');
       
 
+
+    
     const onSubmit = (fields) => {
         //console.log(JSON.stringify(fields));
-             
-        Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
-            "id": props.restid,
-            fields,
-            "params": {
-                "REGISTER_SONET_EVENT": "Y"
-            }
-        }).then(fields => console.log('Posting data', fields)).catch(err => console.log(err ));
+
+        if (fields.STATUS_ID == '1' || fields.STATUS_ID == "JUNK") {
+            Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', {  
+                "id": props.restid,
+                "fields": {
+                    "UF_CRM_1585912669": fields.UF_CRM_1585912669,
+                    "UF_CRM_1590832701": fields.UF_CRM_1590832701,
+                    "STATUS_ID": fields.STATUS_ID
+                },
+                "params": {
+                    "REGISTER_SONET_EVENT": "Y"
+                }
+            }).then(fields => console.log('Posting data', )).catch(err => console.log(err ));
+            
+        } else {
+            Axios.post('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.update/', { 
+                "id": props.restid,
+                fields,
+                "params": {
+                    "REGISTER_SONET_EVENT": "Y"
+                }
+            }).then(fields => console.log('Posting data', )).catch(err => console.log(err ));
+            Axios.post('https://hook.integromat.com/qno2ekhm7e2tooc7ku1f0dh1aqoi6glw', { 
+                fields,
+                "fields":{
+                    "ENTITY_ID": props.restid,
+                    "COMMENT": fields.COMMENT,
+                    "AUTHOR_ID": userID,
+                    "DATE": fields.UF_CRM_1553688545479
+                }
+            }).then(fields => console.log('Posting data', )).catch(err => console.log(err ));
+        }
+
         
         
-        Axios.post('https://hook.integromat.com/qno2ekhm7e2tooc7ku1f0dh1aqoi6glw', { 
-            fields,
-            "fields":{
-                "ENTITY_ID": props.restid,
-                "COMMENT": fields.COMMENT,
-                "AUTHOR_ID": userID,
-                "DATE": fields.UF_CRM_1553688545479
-            }
-        }).then(fields => console.log('Posting data', fields.UF_CRM_1553688545479)).catch(err => console.log(err ));
+        
+
+
         setMessage(`-- Lead has been update successful --`);
         reset();
-      };
+    };
+
+
+      
     
 
     return(
@@ -118,6 +142,8 @@ const Form = (props) => {
                             <option value="">--Change LEAD status--</option>
                             <option value="IN_PROCESS">Contacted</option>
                             <option value="4">No Answer</option>
+                            <option value="JUNK">Junk Lead</option>
+                            <option value="1">Unsuccessful</option>
                         </select>
                         {errors.STATUS_ID && <span class="invalid-feedback">This field is required</span>}
                     </div>
@@ -159,33 +185,109 @@ const Form = (props) => {
                                 </div>
                         )
                     }
+
+
+                    {
+                        showhide==="1" && (
+                            <div className="form-floating">
+                                <select 
+                                        className={`form-label form-control form-select ${errors.UF_CRM_1585912669 && "is-invalid"}`}
+                                        {...register("UF_CRM_1585912669", {required: true})}
+                                    >
+                                        <option value="">--Add  Reason--</option>
+                                        <option value="9832">No answer</option>
+                                        <option value="9833">Not interested now</option>
+                                        <option value="9834">Never inquired</option>
+                                        <option value="9835">Very low budget</option>
+                                        <option value="9836">Other</option>
+                                        <option value="11765">Overpriced</option>
+                                    </select>
+                                    {errors.UF_CRM_1585912669 && <span class="invalid-feedback">This field is required</span>}
+                                    <label for="floatingSelect">Reason</label>
+                                </div>
+                        )
+                    }
                     
-                    <div className="mb-3 ">
-                        <label className="form-label text-white">Date/Time</label>
-                        <input             
-                            min={new Date().toISOString().slice(0, -8)}    
-                            // inputProps={{
-                            //     // only needs the first 16 characters in the date string
-                            //     min: new Date().toISOString().slice(0, 16),
-                            //   }}         
-                            type="datetime-local"
-                            className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
-                            {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
-                        />
-                        {errors.UF_CRM_1553688545479 && <span className="invalid-feedback">The date should be choosed</span>}
-                        <div id="emailHelp" class="form-text">The lead will show in planner</div>
-                    </div>
-                    <div className="mb-3 ">
-                        <label className="form-label text-white">Comments</label>
-                        <textarea 
-                            className={`form-control ${errors.COMMENT && "is-invalid"}`} 
-                            placeholder="Leave a comment here" 
-                            id="floatingTextarea"
-                            {...register("COMMENT", {required: true, minLength: 30})} 
-                        />
-                        {/* {errors.COMMENT && <span class="invalid-feedback">This field is required</span>} */}
-                        {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>}
-                    </div>
+
+                    {
+                        showhide==="JUNK" && (
+                            <div className="form-floating">
+                                <select 
+                                        className={`form-label form-control form-select ${errors.UF_CRM_1590832701 && "is-invalid"}`}
+                                        {...register("UF_CRM_1590832701", {required: true})}
+                                    >
+                                        <option value="">--Add  Reason--</option>
+                                        <option value="10508">Incorrect Contact Details</option>
+                                        <option value="10509">Job Seeker</option>
+                                        <option value="11400">Duplicate Lead</option>
+                                        <option value="10510">Agent</option>
+                                    </select>
+                                    {errors.UF_CRM_1590832701 && <span class="invalid-feedback">This field is required</span>}
+                                    <label for="floatingSelect">Reason</label>
+                                </div>
+                        )
+                    }
+
+
+                    {
+                        showhide==="IN_PROCESS" && (
+                            <>
+                                <div className="mb-3 ">
+                                    <label className="form-label text-white">Date/Time</label>
+                                    <input             
+                                        min={new Date().toISOString().slice(0, -8)}    
+                                        type="datetime-local"
+                                        className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
+                                        {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
+                                    />
+                                    {errors.UF_CRM_1553688545479 && <span className="invalid-feedback">The date should be choosed</span>}
+                                    <div id="emailHelp" class="form-text">The lead will show in planner</div>
+                                </div>
+                                <div className="mb-3 ">
+                                    <label className="form-label text-white">Comments</label>
+                                    <textarea 
+                                        className={`form-control ${errors.COMMENT && "is-invalid"}`} 
+                                        placeholder="Leave a comment here" 
+                                        id="floatingTextarea"
+                                        {...register("COMMENT", {required: true, minLength: 30})} 
+                                    />
+                                    {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>}
+                                </div>
+                            </>
+                        )
+                    }
+
+{
+                        showhide==="4" && (
+                            <>
+                                <div className="mb-3 ">
+                                    <label className="form-label text-white">Date/Time</label>
+                                    <input             
+                                        min={new Date().toISOString().slice(0, -8)}    
+                                        type="datetime-local"
+                                        className={`form-control ${errors.UF_CRM_1553688545479 && "is-invalid"}`}
+                                        {...register("UF_CRM_1553688545479", {required: 'Date is required'})}
+                                    />
+                                    {errors.UF_CRM_1553688545479 && <span className="invalid-feedback">The date should be choosed</span>}
+                                    <div id="emailHelp" class="form-text">The lead will show in planner</div>
+                                </div>
+                                <div className="mb-3 ">
+                                    <label className="form-label text-white">Comments</label>
+                                    <textarea 
+                                        className={`form-control ${errors.COMMENT && "is-invalid"}`} 
+                                        placeholder="Leave a comment here" 
+                                        id="floatingTextarea"
+                                        {...register("COMMENT", {required: true, minLength: 30})} 
+                                    />
+                                    {errors.COMMENT && <span className="invalid-feedback">Minimum number of characters: 30</span>}
+                                </div>
+                            </>
+                        )
+                    }
+                    
+
+
+                    
 
                     
                     <div class="bg-success text-white">
