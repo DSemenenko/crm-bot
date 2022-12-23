@@ -10,7 +10,7 @@ const id = 742288;
 
 bot.command('lead', async(ctx) => {
     await ctx.reply('Lead Status: ', Markup.inlineKeyboard([
-        [Markup.button.webApp('Open Test Lead', 'https://d97d-91-72-172-198.in.ngrok.io/?id=742288')]
+        [Markup.button.webApp('Open Test Lead', 'https://85a9-91-72-172-198.in.ngrok.io/?id=742288')]
     ]))
     console.log(ctx)
     fetch('https://crm.axcap.ae/rest/1/y9x9q1wmj1mwq5bu/crm.lead.get?id=' + id)
